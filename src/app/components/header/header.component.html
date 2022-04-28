@@ -1,0 +1,16 @@
+<header>
+  <div class="logo">
+    <img src="/assets/images/electric.png" alt="logo" />
+    <h5>Guiotti</h5>
+  </div>
+  <div>
+    <ul>
+      <li>
+        <img src="/assets/images/case.png" alt="cart" />
+        <ng-container *ngIf="(cart$ | async) as cart">
+          <span class="badge" *ngIf="cart.length > 0"> {{ cart.length }}</span>
+        </ng-container>
+      </li>
+    </ul>
+  </div>
+</header>

@@ -1,0 +1,20 @@
+<main>
+  <section class="banners">
+    <div *ngFor="let index of bannersIndex">
+      <img [src]="'/assets/images/banner' + index + '.jpg'" alt="banner" />
+    </div>
+  </section>
+
+  <ng-lottie 
+    *ngIf="!products$" 
+    [options]="options" 
+  ></ng-lottie>
+
+  <!-- guitars list section -->
+  <section *ngIf="(products$ | async) as products">
+    <app-product-list [products]="products"></app-product-list>
+  </section>
+
+  <router-outlet></router-outlet>
+
+</main>

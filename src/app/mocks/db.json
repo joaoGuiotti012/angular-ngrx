@@ -1,0 +1,59 @@
+{
+    "guitars": [
+        {
+            "name": "Fender Carton S7FM TBL",
+            "price": 453,
+            "image": "/assets/images/fender.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        },
+        {
+            "name": "Ibanez JEMPZ4-WH",
+            "price": 600,
+            "image": "/assets/images/ibanez.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        },
+        {
+            "name": "Guibson SG 3304",
+            "price": 470,
+            "image": "/assets/images/guibson.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        },
+        {
+            "name": "Fender Carton S7FM TBL",
+            "price": 453,
+            "image": "/assets/images/fender.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        },
+        {
+            "name": "Ibanez JEMPZ4-WH",
+            "price": 600,
+            "image": "/assets/images/ibanez.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        },
+        {
+            "name": "Guibson SG 3304",
+            "price": 470,
+            "image": "/assets/images/guibson.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        },
+        {
+            "name": "Fender Carton S7FM TBL",
+            "price": 453,
+            "image": "/assets/images/fender.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        },
+        {
+            "name": "Ibanez JEMPZ4-WH",
+            "price": 600,
+            "image": "/assets/images/ibanez.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        },
+        {
+            "name": "Guibson SG 3304",
+            "price": 470,
+            "image": "/assets/images/guibson.png",
+            "description": "loremd asdkasj dasd kjasdg asgdasdghjasdghj"
+        }
+    ]
+
+}
