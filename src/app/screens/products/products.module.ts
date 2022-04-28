@@ -10,6 +10,8 @@ import { ShopEffects } from './store/products.effects';
 import { LottieModule } from 'ngx-lottie';
 import { RouterModule, Routes } from '@angular/router';
 import player from 'lottie-web';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 
 const playerFactory = () => player;
 
@@ -23,6 +25,11 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }),
     RouterModule.forChild(routes),
     LottieModule.forRoot({ player: playerFactory }),
     StoreModule.forFeature('products', ShopReducer),

@@ -16,7 +16,8 @@ import { LottieModule } from 'ngx-lottie';
 import player from 'lottie-web';
 import { ProductsModule } from './screens/products/products.module';
 import { EffectsModule } from '@ngrx/effects';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { ToastrModule } from 'ngx-toastr';
 const playerFactory = () => player;
 
 @NgModule({
@@ -28,6 +29,12 @@ const playerFactory = () => player;
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }),
     HttpClientModule,
     ProductsModule,
     StoreModule.forRoot({}),

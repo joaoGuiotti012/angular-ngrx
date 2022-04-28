@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { ToastrService } from 'ngx-toastr';
 import { LOCAL_CART } from 'src/environments/environment';
 import { IProduct } from '../../../models/product.model';
 import { AddToCart, RemoveFromCart } from '../store/products.actions';
@@ -12,7 +13,10 @@ import { AddToCart, RemoveFromCart } from '../store/products.actions';
 export class ProductComponent implements OnInit {
   @Input() product: IProduct = {} as IProduct;
 
-  constructor(private store: Store<{ items: [], cart: [] }>) { }
+  constructor(
+    private toastr: ToastrService,
+    private store: Store<{ items: [], cart: [] }>
+  ) { }
 
   inCart: boolean = false;
 
@@ -24,10 +28,12 @@ export class ProductComponent implements OnInit {
   addToCart(item: IProduct) {
     this.store.dispatch(AddToCart(item));
     this.inCart = true;
+    this.toastr.success(`Succeso ao comprar o item ${item.name}`, 'SUCESSO')
   }
 
   removeFromCart(item: IProduct) {
     this.store.dispatch(RemoveFromCart(item));
     this.inCart = false;
+    this.toastr.warning(`Item ${item.name} foi removido do carinho!`, 'CART REMOÇÃO')
   }
 }
