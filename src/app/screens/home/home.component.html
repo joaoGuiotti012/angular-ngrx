@@ -1,1 +1,2 @@
 <p class="txt-white "> HOME</p>
+<p class="txt-white" *ngIf="(products$ | async ) as p"> {{ p | json }} </p>

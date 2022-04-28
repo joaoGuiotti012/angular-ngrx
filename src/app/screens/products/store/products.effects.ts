@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { Actions, ofType, createEffect } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
 import { mergeMap, map, catchError } from "rxjs/operators";
+import { LOCAL_CART } from "src/environments/environment";
 import { GuitarService } from "../../../services/guitar.service";
 import { ActionTypes } from "./products.actions";
 
@@ -17,9 +18,9 @@ export class ShopEffects {
             ofType(ActionTypes.LoadItems),
             mergeMap(() =>
                 this.guitarService.getAll().pipe(
-                    map((guitars) => ({
+                    map((products: any) => ({
                         type: ActionTypes.LoadSuccess,
-                        payload: guitars
+                        payload: products
                     })),
                     catchError(() => EMPTY)
                 )

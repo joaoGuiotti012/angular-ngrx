@@ -13,11 +13,13 @@
   </div>
   <div class="guitar-actions">
     <button *ngIf="!inCart" class="guitar-actions__add" (click)="addToCart(product)">
-      <img src="/assets/images/add-to-cart.png" alt="AddToCart">
+      <img src="/assets/svgs/cart.svg" alt="AddToCart">
+      Add Carrinho
     </button>
     
     <button *ngIf="inCart" class="guitar-actions__remove" (click)="removeFromCart(product)">
-      <img src="/assets/images/remove-from-cart.png" alt="RemoveToCart">
+      <img src="/assets/svgs/cart.svg" alt="RemoveToCart">
+      Remover Carrinho
     </button>
   </div>
 </div>

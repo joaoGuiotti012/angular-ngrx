@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   products$!: Observable<IProduct[]>;
 
   constructor(private store: Store<any>) {
-    // this.products$ = store.select('shop').pipe(map((state: any) => state.items));
+    this.products$ = store.select('shop').pipe(map((state: any) => state));
   }
 
   ngOnInit(): void {
