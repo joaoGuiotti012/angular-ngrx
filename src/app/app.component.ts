@@ -15,7 +15,7 @@ import { getErrorMessage, getLoading } from './states/Shared/shared.selector';
 export class AppComponent implements OnInit {
   title = 'angular-ngrx-store';
 
-  isAuthenticated$!: Observable<boolean>;
+  isAuth$!: Observable<boolean>;
   showLoading: Observable<boolean>;
   errorMessage: Observable<string>;
   
@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
     private store: Store<any>,
     private router: Router
   ) {
+    this.isAuth$ = this.store.select(isAuthenticated)
     this.showLoading = this.store.select(getLoading);
     this.errorMessage = this.store.select(getErrorMessage);
     this.store.dispatch(autoLogin());

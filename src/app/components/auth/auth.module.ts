@@ -8,6 +8,7 @@ import { AuthReducer } from 'src/app/states/auth/auth.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthEffects } from 'src/app/states/auth/auth.effects';
 import { SignupComponent } from './signup/signup.component';
+import { LottieModule } from 'ngx-lottie';
 
 const routes: Routes = [
   {
@@ -25,6 +26,7 @@ const routes: Routes = [
     CommonModule,
     ReactiveFormsModule,
     FormsModule,
+    LottieModule,
     StoreModule.forFeature('auth', AuthReducer),
     EffectsModule.forFeature([AuthEffects]),
     RouterModule.forChild(routes)

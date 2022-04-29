@@ -1,3 +1,35 @@
+<div class="container-login">
+  <form class="form-signin needs-validation text-center" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
+    <img class="mb-4" src="/assets/svgs/guitar-logo.svg" alt="" width="72"
+      height="72">
+    <h1 class="h3 mb-3 font-weight-normal" [style.color]="'#cd5c5c'">Please sign in</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="inputEmail" name="email" class="form-control" formControlName="email"
+      placeholder="Email address" required autofocus>
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="inputPassword" formControlName="password" name="password" class="form-control"
+      placeholder="Password" required>
+    <div class="checkbox mb-3 mt-3">
+      <label>
+        <input type="checkbox" value="remember-me"> Lembra-se
+      </label>
+    </div>
+    <button [disabled]="!loginForm.valid" class="btn btn-lg btn-danger-login btn-entrar btn-block" type="submit">
+      Entrar
+      <i class="fa fa-sign-in"></i>
+    </button>
+    <div class="nao-tem-login">
+      <p class="mt-2 mb-3 text-muted border-bottom-dashed" [routerLink]="['/auth/signup']">
+        Não tem login? Cadastre-se agora!
+      </p>
+    </div>
+    <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Quero me Registrar</button> -->
+    <p class="mt-5 mb-3 text-muted">© 2022-{{currentYear}}</p>
+  </form>
+</div>
+
+<!-- 
+
 <div class="container">
   <div class="col-md-6 offset-md-3">
     <h3>Login</h3>
@@ -44,4 +76,4 @@
       </div>
     </form>
   </div>
-</div> 
+</div>  -->

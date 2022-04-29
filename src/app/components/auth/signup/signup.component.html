@@ -1,4 +1,71 @@
-<div class="container">
+<div class="btn-voltar shadow" [routerLink]="['/auth/login']">
+  <i class="fa fa-arrow-left" aria-hidden="true"></i>
+</div>
+<div class="container-register ">
+  <div class="row container">
+    <div class="col-sm-12 col-md-5 text-center">
+      <h2 class="mb-3 ">Cadastro Usuário </h2>
+      <ng-lottie [options]="{
+        path: '/assets/animations/guitar-loading.json'
+      }" height="270px"></ng-lottie>
+    </div>
+
+    <div class="col-sm-12 col-md-7">
+      <div class="container">
+        <form [formGroup]="signUpForm">
+          <div class="row">
+            <div class="col-12">
+              <label for="" class="form-label">Email:</label>
+              <input class="form-control" type="text" formControlName="email" placeholder="Email"
+                [class.is-invalid]="isInvalidControl('email')" />
+              <p class="invalid-feedback">
+                email é obrigatório.
+              </p>
+            </div>
+
+            <div class="col-sm-12">
+              <div class="col-sm-6">
+                <label for="" class="form-label">Password:</label>
+                <input class="form-control" type="password" formControlName="password"
+                  [class.is-invalid]="isInvalidControl('password')" />
+                <p class="invalid-feedback" *ngIf="f.get('password')?.hasError('minlength') &&
+                f.get('password')?.touched">
+                  Deve conter no mínimo 4 caracters
+                </p>
+                <p class="invalid-feedback" *ngIf="control('password')?.hasError('required')">
+                  Campo obrigátorio
+                </p>
+              </div>
+
+              <div class="col-sm-12">
+                <div class="col-sm-6">
+                  <label for="" class="form-label">Confirmar Senha:</label>
+                  <input class="form-control" name="confirmPassword" type="password" formControlName="confirmPassword"
+                    placeholder="Confirme a Senha" [class.is-invalid]="isInvalidControl('confirmPassword')" />
+                  <div class="invalid-feedback" *ngIf="f.get('confirmPassword')?.hasError('required')">
+                    Confirme a Senha
+                  </div>
+                  <div class="invalid-feedback" *ngIf="f.get('confirmPassword')?.errors?.mustMatch">
+                    Confirmação não confere
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr class="my-4">
+          <button class="btn-submit container btn btn-lg btn-register" [disabled]="f.invalid" (click)="onSignUpSubmit()">
+            Registrar
+          </button>
+        </form>
+        <br>
+        <br>
+        <br>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <div class="container">
   <div class="col-md-6 offset-md-3">
     <h3>SignUp</h3>
     <hr />
@@ -28,4 +95,4 @@
       </div>
     </form>
   </div>
-</div>
+</div> -->

@@ -11,6 +11,8 @@ import { setLoadingSpinner } from 'src/app/states/Shared/shared.actions';
 })
 export class LoginComponent implements OnInit {
 
+  currentYear = new Date().getFullYear();
+
   loginForm: FormGroup = new FormGroup({});
 
   constructor(private store: Store<any>) {}

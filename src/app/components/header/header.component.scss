@@ -27,6 +27,21 @@
 
 .active {
   font-weight  : bold !important;
-  color        : indianred !important ;
+  color        : indianred !important;
   border-bottom: 2px solid indianred !important;
+}
+
+.title-menu {
+  color         : indianred;
+  font-weight   : bold;
+  font-size     : 23px;
+  letter-spacing: 2px;
+
+  &:hover {
+    color: indianred !important;
+  }
+
+  img:hover {
+    transform: scale(1.2);
+  }
 }
