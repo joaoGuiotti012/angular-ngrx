@@ -2,7 +2,7 @@
 <div class="load-container" *ngIf="(showLoading | async)">
   <ng-lottie [options]="options" height="600px"></ng-lottie>
 </div>
-<div class="col-md-12">
+<div class="container-router-outlet">
   <div class="alert alert-danger" *ngIf="errorMessage | async as error">
     {{ error }}
   </div>

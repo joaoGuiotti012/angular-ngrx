@@ -5,24 +5,28 @@
 .cursor-pointer {
   cursor: pointer;
 }
+
 .container-cart {
   margin-right: 20px;
 
   .badge-cart {
-    position: absolute;
+    position   : absolute;
     margin-left: -10px;
-    margin-top: 4px;
+    margin-top : 4px;
   }
 }
 
 .dropdown-item.logout {
-  display: flex;
+  display        : flex;
   justify-content: space-between;
+
   i {
     line-height: 22px;
   }
 }
+
 .active {
-  font-weight: bold;
-  color: indianred;
+  font-weight  : bold !important;
+  color        : indianred !important ;
+  border-bottom: 2px solid indianred !important;
 }

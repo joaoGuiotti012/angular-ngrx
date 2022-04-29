@@ -8,3 +8,9 @@
     background: rgba(110, 110, 110, 0.219);
     z-index: 10000;
 }
+
+.container-router-outlet {
+    width: 100%;
+    height: calc(100vh - 80px);
+    margin-top: 80px;
+}
