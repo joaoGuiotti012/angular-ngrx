@@ -3,7 +3,7 @@ import { Actions, ofType, createEffect } from "@ngrx/effects";
 import { EMPTY } from "rxjs";
 import { mergeMap, map, catchError } from "rxjs/operators";
 import { LOCAL_CART } from "src/environments/environment";
-import { GuitarService } from "../../../services/guitar.service";
+import { GuitarService } from "../../services/guitar.service";
 import { ActionTypes } from "./products.actions";
 
 @Injectable()

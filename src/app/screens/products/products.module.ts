@@ -5,13 +5,15 @@ import { ProductComponent } from './product/product.component';
 import { ProductListComponent } from './product-list/product-list.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
-import { ShopReducer } from './store/products.reducer';
-import { ShopEffects } from './store/products.effects';
+import { ShopReducer } from '../../states/product/products.reducer';
+import { ShopEffects } from '../../states/product/products.effects';
 import { LottieModule } from 'ngx-lottie';
 import { RouterModule, Routes } from '@angular/router';
 import player from 'lottie-web';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TOAST_CONFIG } from 'src/environments/environment';
 
 const playerFactory = () => player;
 
@@ -25,11 +27,8 @@ const routes: Routes = [
 @NgModule({
   imports: [
     CommonModule,
-    ToastrModule.forRoot({
-      timeOut: 1000,
-      progressBar: true,
-      progressAnimation: 'increasing'
-    }),
+    ToastrModule.forRoot(TOAST_CONFIG),
+    NgbModule,
     RouterModule.forChild(routes),
     LottieModule.forRoot({ player: playerFactory }),
     StoreModule.forFeature('products', ShopReducer),

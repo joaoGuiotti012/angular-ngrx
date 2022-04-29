@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { select, Store } from '@ngrx/store';
 import { IProduct } from '../../models/product.model';
-import { GetItems } from '../../screens/products/store/products.actions';
+import { GetItems } from '../../states/product/products.actions';
 import { map, Observable } from 'rxjs';
 import { AnimationOptions } from 'ngx-lottie';
 import { AnimationItem } from 'ngx-lottie/lib/symbols';
@@ -17,7 +17,7 @@ export class HomeComponent implements OnInit {
   products$!: Observable<IProduct[]>;
 
   constructor(private store: Store<any>) {
-    this.products$ = store.select('shop').pipe(map((state: any) => state));
+    this.products$ = store.select('products').pipe(map((state: any) => state));
   }
 
   ngOnInit(): void {

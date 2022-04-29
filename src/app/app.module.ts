@@ -5,21 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { StoreModule } from '@ngrx/store'
-import { ShopReducer } from './screens/products/store/products.reducer';
 import { HomeComponent } from './screens/home/home.component';
 
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
+import { environment, TOAST_CONFIG } from '../environments/environment';
 import { LottieModule } from 'ngx-lottie';
-import player from 'lottie-web';
 import { ProductsModule } from './screens/products/products.module';
 import { EffectsModule } from '@ngrx/effects';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { ToastrModule } from 'ngx-toastr';
-const playerFactory = () => player;
+import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
+import player from 'lottie-web';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthTokenInterceptor } from './services/AuthToken.interceptor';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
+import { CustomSerializer } from './states/router/custom-serializer';
+import { appReducer } from './states/app.state';
+import { AuthEffects } from './states/auth/auth.effects';
+const playerFactory = () => player;
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,19 +36,22 @@ const playerFactory = () => player;
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 1000,
-      progressBar: true,
-      progressAnimation: 'increasing'
-    }),
+    ToastrModule.forRoot(TOAST_CONFIG),
+    BsDropdownModule.forRoot(),
     HttpClientModule,
     ProductsModule,
-    StoreModule.forRoot({}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot(appReducer),
+    EffectsModule.forRoot([AuthEffects]),
     LottieModule.forRoot({ player: playerFactory }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot({
+      serializer: CustomSerializer,
+    }),
+    NgbModule
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

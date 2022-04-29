@@ -1,19 +1,68 @@
-<header>
-  <div class="logo">
-    <img class="pointer" src="/assets/images/electric.png" alt="logo" [routerLink]="['']" />
-    <h5 class="pointer" [routerLink]="['']">Guiotti</h5>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand">
+      <img src="/assets/images/electric.png" alt="" width="30" height="24" class="d-inline-block align-text-top">
+      Bootstrap
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li *ngIf="(isAuth$ | async)" class="nav-item">
+          <a class="nav-link active" aria-current="page" [routerLink]="['']">Home</a>
+        </li>
+        <li *ngIf="(isAuth$ | async)" class="nav-item">
+          <a class="nav-link" [routerLink]="['/products']">Products</a>
+        </li>
+        <li *ngIf="!(isAuth$ | async)" class="nav-item">
+          <a class="nav-link" [routerLink]="['/auth']">Login</a>
+        </li>
+        <li *ngIf="!(isAuth$ | async)" class="nav-item">
+          <a class="nav-link" [routerLink]="['/auth/signup']">Signup</a>
+        </li>
+        <li *ngIf="(isAuth$ | async)" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          </ul>
+        </li> 
+      </ul>
+      <form class="d-flex" *ngIf="(isAuth$ | async)">
+        <div class="navbar-nav navbar-collapse nav-item dropdown">
+          <a class="nav-link dropdown-toggle" id="logout" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <span [ngbTooltip]="(user$ | async).email">
+              <i class="fa fa-user"></i>
+              {{(user$ | async).email.substr(0,6) }}...
+            </span>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="logout">
+            <li>
+              <a class="dropdown-item logout" (click)="logout()">
+                Logout
+                <i class="fa fa-sign-out text-danger"></i>
+              </a>
+
+            </li>
+          </ul>
+        </div>
+        <div class="ml-2 position-relative container-cart">
+          <img src="/assets/images/case.png" width="45" height="55" alt="">
+          <ng-container *ngIf="(cart$ | async) as cart">
+            <span class="badge-cart badge rounded-pill bg-danger" *ngIf="cart.length > 0"> {{ cart.length }}</span>
+          </ng-container>
+        </div>
+      </form>
+
+    </div>
   </div>
-  <div>
-    <ul>
-      <li>
-        <a [routerLink]="['/products']"> Products </a>
-      </li>
-      <li>
-        <img src="/assets/images/case.png" alt="cart" />
-        <ng-container *ngIf="(cart$ | async) as cart">
-          <span class="badge" *ngIf="cart.length > 0"> {{ cart.length }}</span>
-        </ng-container>
-      </li>
-    </ul>
-  </div>
-</header>
+</nav>

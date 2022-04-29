@@ -21,6 +21,15 @@ main {
         }
       }
     }
+    .carousel {
+      img {
+        height       : 300px;
+        width        : 100%;
+        max-width    : 100%;
+        border-radius: 10px;
+        object-fit   : cover;
+      }
+    }
   }
   
   .txt-white {

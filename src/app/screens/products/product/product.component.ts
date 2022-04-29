@@ -3,7 +3,7 @@ import { Store } from '@ngrx/store';
 import { ToastrService } from 'ngx-toastr';
 import { LOCAL_CART } from 'src/environments/environment';
 import { IProduct } from '../../../models/product.model';
-import { AddToCart, RemoveFromCart } from '../store/products.actions';
+import { AddToCart, RemoveFromCart } from '../../../states/product/products.actions';
 
 @Component({
   selector: 'app-product',

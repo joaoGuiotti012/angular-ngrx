@@ -6,7 +6,22 @@ export const LOCAL_CART = 'products_cart';
 export const environment = {
   production: false,
   URL_API: "http://localhost:3000",
+  FIRBASE_API_KEY: 'AIzaSyA9HEOZrRHZP026VQObeDz2PVD_GLpMV50',
 };
+
+enum ToasterPosition {
+  topRight = 'toast-top-right',
+  topLeft = 'toast-top-left',
+  bottomRight = 'toast-bottom-right',
+  bottomLeft= 'toast-bottom-left',
+  // Other positions you would like
+}
+export const TOAST_CONFIG: any = {
+  timeOut: 1000,
+  progressBar: true,
+  progressAnimation: 'increasing',
+  positionClass: ToasterPosition.bottomRight
+}
 
 /*
  * For easier debugging in development mode, you can import the following file
