@@ -29,22 +29,22 @@ export class AuthEffects {
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(loginStart),
-      exhaustMap((action) => {
-        return this.authService.login(action.email, action.password).pipe(
+      exhaustMap((action) =>  this.authService.login(action.email, action.password).pipe(
           map((data) => {
-            this.store.dispatch(setErrorMessage({ message: '' }));
+            this.store.dispatch(setLoadingSpinner({ status: false }));
             const user = this.authService.formatUser(data);
             this.authService.setUserInLocalStorage(user);
             return loginSuccess({ user, redirect: true });
           }),
           catchError((errResp) => {
+            this.store.dispatch(setLoadingSpinner({ status: false }));
             const errorMessage = this.authService.getErrorMessage(
               errResp.error.error.message
             );
             return of(setErrorMessage({ message: errorMessage }));
           })
-        );
-      })
+        )
+      )
     );
   });
 
@@ -55,7 +55,7 @@ export class AuthEffects {
         tap((action) => {
           this.store.dispatch(setErrorMessage({ message: '' }));
           if (action.redirect) {
-            this.router.navigate(['/products']);
+            this.router.navigate(['']);
           }
         })
       );

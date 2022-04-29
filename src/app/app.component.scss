@@ -1,0 +1,10 @@
+.load-container {
+    flex: 1;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    background: rgba(110, 110, 110, 0.219);
+    z-index: 10000;
+}
