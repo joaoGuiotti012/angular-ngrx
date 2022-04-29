@@ -56,7 +56,8 @@
           </ul>
         </div>
         <div class="ml-2 position-relative container-cart">
-          <img src="/assets/images/case.png" width="45" height="55" alt="">
+          <!-- <img src="/assets/images/case.png" width="45" height="55" alt=""> -->
+          <i class="fa fa-shopping-cart icon-cart" aria-hidden="true"></i>
           <ng-container *ngIf="(cart$ | async) as cart">
             <span class="badge-cart badge rounded-pill bg-danger" *ngIf="cart.length > 0"> {{ cart.length }}</span>
           </ng-container>
