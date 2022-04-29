@@ -7,7 +7,7 @@
         <label>Email</label>
         <input type="email" class="form-control" formControlName="email" />
         <div *ngIf="
-              signUpForm.get('email')?.touched && !signUpForm.get('email')?.valid
+              signUpForm.get('email')?.touched && signUpForm.get('email')?.invalid
             ">
         </div>
       </div>
@@ -16,9 +16,9 @@
         <input type="password" class="form-control" formControlName="password" />
         <div *ngIf="
               signUpForm.get('password')?.touched &&
-              !signUpForm.get('password')?.valid
+              signUpForm.get('password')?.invalid
             ">
-          <div>Password is required</div>
+          <div class="text-danger">Password is required</div>
         </div>
       </div>
       <div class="mb-3">

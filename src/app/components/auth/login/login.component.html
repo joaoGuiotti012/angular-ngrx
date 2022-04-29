@@ -8,10 +8,10 @@
         <input type="text" class="form-control" formControlName="email" />
         <div
           *ngIf="
-            loginForm.get('email')?.touched && !loginForm.get('email')?.valid
+            loginForm.get('email')?.touched && loginForm.get('email')?.invalid
           "
         >
-          <div *ngIf="loginForm.get('email')?.errors">
+          <div class="text-danger" *ngIf="loginForm.get('email')?.errors">
             Email is required
           </div>
         </div>
@@ -26,10 +26,10 @@
         <div
           *ngIf="
             loginForm.get('password')?.touched &&
-            !loginForm.get('password')?.valid
+            loginForm.get('password')?.invalid
           "
         >
-          <div>Password is required</div>
+          <div class="text-danger">Password is required</div>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
         <button
           type="submit"
           class="btn btn-primary"
-          [disabled]="!loginForm.valid"
+          [disabled]="loginForm.invalid"
         >
           Login
         </button>
