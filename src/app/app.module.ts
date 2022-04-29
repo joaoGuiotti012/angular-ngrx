@@ -21,8 +21,6 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import player from 'lottie-web';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthTokenInterceptor } from './services/AuthToken.interceptor';
-import { StoreRouterConnectingModule } from '@ngrx/router-store';
-import { CustomSerializer } from './states/router/custom-serializer';
 import { appReducer } from './states/app.state';
 import { AuthEffects } from './states/auth/auth.effects';
 const playerFactory = () => player;
@@ -44,9 +42,6 @@ const playerFactory = () => player;
     EffectsModule.forRoot([AuthEffects]),
     LottieModule.forRoot({ player: playerFactory }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    StoreRouterConnectingModule.forRoot({
-      serializer: CustomSerializer,
-    }),
     NgbModule
   ],
   providers: [
