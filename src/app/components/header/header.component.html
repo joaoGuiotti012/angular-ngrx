@@ -17,10 +17,10 @@
           <a class="nav-link" [routerLink]="['/products']" routerLinkActive="active">Products</a>
         </li>
         <li *ngIf="!(isAuth$ | async)" class="nav-item">
-          <a class="nav-link" [routerLink]="['/auth']">Login</a>
+          <a class="nav-link" [routerLink]="['/auth/login']" routerLinkActive="active">Login</a>
         </li>
         <li *ngIf="!(isAuth$ | async)" class="nav-item">
-          <a class="nav-link" [routerLink]="['/auth/signup']">Signup</a>
+          <a class="nav-link" [routerLink]="['/auth/signup']" routerLinkActive="active">Signup</a>
         </li>
         <li *ngIf="(isAuth$ | async)" class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"

@@ -44,13 +44,13 @@ export class AuthService {
   getErrorMessage(message: string) {
     switch (message) {
       case 'EMAIL_NOT_FOUND':
-        return 'Email Not Found';
+        return 'Email não encontrado!';
       case 'INVALID_PASSWORD':
-        return 'Invalid Password';
+        return 'Senha Invalida!';
       case 'EMAIL_EXISTS':
-        return 'Email already exists';
+        return 'Email já existe na base de dados!';
       default:
-        return 'Unknown error occurred. Please try again';
+        return 'Ocorreu um erro desconhecido, tente novamente mais tarde!';
     }
   }
 
