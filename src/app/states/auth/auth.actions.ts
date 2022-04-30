@@ -18,12 +18,12 @@ export const loginStart = createAction(
 
 export const loginWithGoogle = createAction(
   LOGIN_WITH_START,
-  props<SocialUser>() 
+  props<SocialUser>()
 );
 
 export const loginSuccess = createAction(
   LOGIN_SUCCESS,
-  props<{ user: User; redirect: boolean, loggedWithGoogle?: boolean}>()
+  props<{ user: User; redirect: boolean }>()
 );
 
 export const signupStart = createAction(

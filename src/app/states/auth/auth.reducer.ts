@@ -7,7 +7,6 @@ const _authReducer = createReducer(
   on(loginSuccess, (state, action) => {
     return {
       ...state,
-      logedWithGoogle: !!action?.loggedWithGoogle,
       user: action.user,
     };
   }),

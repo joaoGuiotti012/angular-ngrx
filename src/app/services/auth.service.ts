@@ -43,7 +43,8 @@ export class AuthService {
       email: data.email,
       token: data.idToken,
       localId: data.localId,
-      expirationDate: expirationDate
+      expirationDate: expirationDate,
+      isAuthByGoolge: false
     });
     return user;
   }
@@ -57,6 +58,7 @@ export class AuthService {
       localId: data.idToken,
       authGoogle: data.authToken,
       photoUrl: data.photoUrl,
+      isAuthByGoolge: true
     });
     return user;
   }

@@ -9,7 +9,7 @@ export const isAuthenticated = createSelector(getAuthState, (state) => {
 });
 
 export const isAuthenticatedByGoogle = createSelector(getAuthState, (state) => {
-  return state?.logedWithGoogle;
+  return !!state?.user ? state.user.isAuthByGoolge : false;
 });
 
 export const getToken = createSelector(getAuthState, (state) => {

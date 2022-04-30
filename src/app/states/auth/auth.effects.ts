@@ -60,7 +60,7 @@ export class AuthEffects {
           map((user: User) => {
             this.authService.setUserInLocalStorage(user);
             this.store.dispatch(setLoadingSpinner({ status: false }));
-            return loginSuccess({ user, redirect: true, loggedWithGoogle: true });
+            return loginSuccess({ user, redirect: true });
           })
         )
       )
@@ -120,9 +120,9 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(autoLogout),
         map((action) => {
+          this.authService.logout();
           if (this.store.select(isAuthenticatedByGoogle))
             this.socialAuthService.signOut(true);
-          this.authService.logout();
           this.router.navigate(['auth']);
         })
       );
