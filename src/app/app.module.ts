@@ -23,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AuthTokenInterceptor } from './services/AuthToken.interceptor';
 import { appReducer } from './states/app.state';
 import { AuthEffects } from './states/auth/auth.effects';
+import { GoogleLoginProvider, SocialAuthServiceConfig, SocialLoginModule } from 'angularx-social-login';
 const playerFactory = () => player;
 @NgModule({
   declarations: [
@@ -42,10 +43,23 @@ const playerFactory = () => player;
     EffectsModule.forRoot([AuthEffects]),
     LottieModule.forRoot({ player: playerFactory }),
     StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
-    NgbModule
+    NgbModule,
+    SocialLoginModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthTokenInterceptor, multi: true },
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('170370376765-ivmv2skpd6hboputnjuk1vclrrhiqtc6.apps.googleusercontent.com'),
+          },
+        ],
+      } as SocialAuthServiceConfig
+    }
   ],
   bootstrap: [AppComponent]
 })

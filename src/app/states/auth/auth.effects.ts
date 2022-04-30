@@ -1,4 +1,4 @@
- 
+
 import { AuthService } from './../../services/auth.service';
 import { exhaustMap, map, catchError, tap, mergeMap } from 'rxjs/operators';
 import {
@@ -6,16 +6,19 @@ import {
   autoLogout,
   loginStart,
   loginSuccess,
+  loginWithGoogle,
   signupStart,
   signupSuccess,
 } from './auth.actions';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
-import { Store } from '@ngrx/store'; 
-import { of } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { EMPTY, of } from 'rxjs';
 import { Router } from '@angular/router';
 import { setErrorMessage, setLoadingSpinner } from '../Shared/shared.actions';
 import { User } from 'src/app/models/user.model';
+import { GoogleLoginProvider, SocialAuthService, SocialUser } from 'angularx-social-login';
+import { isAuthenticatedByGoogle } from './auth.selector';
 
 @Injectable()
 export class AuthEffects {
@@ -23,29 +26,45 @@ export class AuthEffects {
     private actions$: Actions,
     private authService: AuthService,
     private store: Store<any>,
-    private router: Router
-  ) {}
+    private router: Router,
+    private socialAuthService: SocialAuthService
+  ) { }
 
   login$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(loginStart),
-      exhaustMap((action) =>  this.authService.login(action.email, action.password).pipe(
-          map((data) => {
-            this.store.dispatch(setLoadingSpinner({ status: false }));
-            const user = this.authService.formatUser(data);
+      exhaustMap((action) => this.authService.login(action.email, action.password).pipe(
+        map((data) => {
+          this.store.dispatch(setLoadingSpinner({ status: false }));
+          const user = this.authService.formatUser(data);
+          this.authService.setUserInLocalStorage(user);
+          return loginSuccess({ user, redirect: true });
+        }),
+        catchError((errResp) => {
+          this.store.dispatch(setLoadingSpinner({ status: false }));
+          const errorMessage = this.authService.getErrorMessage(
+            errResp.error.error.message
+          );
+          return of(setErrorMessage({ message: errorMessage }));
+        })
+      )
+      )
+    );
+  });
+
+  loginWithGoogle$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(loginWithGoogle),
+      exhaustMap((action) => this.authService.loginWithGoogle(action)
+        .pipe(
+          map((user: User) => {
             this.authService.setUserInLocalStorage(user);
-            return loginSuccess({ user, redirect: true });
-          }),
-          catchError((errResp) => {
             this.store.dispatch(setLoadingSpinner({ status: false }));
-            const errorMessage = this.authService.getErrorMessage(
-              errResp.error.error.message
-            );
-            return of(setErrorMessage({ message: errorMessage }));
+            return loginSuccess({ user, redirect: true, loggedWithGoogle: true });
           })
         )
       )
-    );
+    )
   });
 
   loginRedirect$ = createEffect(
@@ -101,6 +120,8 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(autoLogout),
         map((action) => {
+          if (this.store.select(isAuthenticatedByGoogle))
+            this.socialAuthService.signOut(true);
           this.authService.logout();
           this.router.navigate(['auth']);
         })

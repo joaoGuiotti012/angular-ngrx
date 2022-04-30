@@ -8,6 +8,10 @@ export const isAuthenticated = createSelector(getAuthState, (state) => {
   return !!state?.user;
 });
 
+export const isAuthenticatedByGoogle = createSelector(getAuthState, (state) => {
+  return state?.logedWithGoogle;
+});
+
 export const getToken = createSelector(getAuthState, (state) => {
   return !!state?.user ? state.user.userToken : null;
 });

@@ -4,7 +4,7 @@ import { select, Store } from '@ngrx/store';
 import { map, Observable } from 'rxjs';
 import { IProduct } from 'src/app/models/product.model';
 import { autoLogout } from 'src/app/states/auth/auth.actions';
-import { isAuthenticated } from 'src/app/states/auth/auth.selector';
+import { isAuthenticated, isAuthenticatedByGoogle } from 'src/app/states/auth/auth.selector';
 
 @Component({
   selector: 'app-header',

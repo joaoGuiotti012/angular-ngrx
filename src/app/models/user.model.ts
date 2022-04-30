@@ -1,10 +1,18 @@
+import * as moment from "moment";
+
 export class User {
-  constructor(
-    private email: string,
-    private token: string,
-    private localId: string,
-    private expirationDate: Date
-  ) {}
+  email: string = '';
+  token: string = '';
+  localId: string = '';
+  expirationDate: Date = moment().add(1, 'days').toDate();;
+  authGoogle: string = '';
+  name: string = '';
+  lastName: string = '';
+  photoUrl: string = '';
+
+  constructor(data: Partial<User>) {
+    Object.assign(this, data);
+  }
 
   get expireDate() {
     return this.expirationDate;

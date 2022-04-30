@@ -20,8 +20,6 @@ export class ProductsComponent implements OnInit {
   products$!: Observable<IProduct[]>;
 
   constructor(private store: Store<any>) {
-    console.log('teste');
-    
     this.products$ = store.select('products').pipe(map((state: any) => state.items));
   }
 

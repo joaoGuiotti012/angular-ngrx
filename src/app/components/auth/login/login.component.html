@@ -1,7 +1,6 @@
 <div class="container-login">
   <form class="form-signin needs-validation text-center" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
-    <img class="mb-4" src="/assets/svgs/guitar-logo.svg" alt="" width="72"
-      height="72">
+    <img class="mb-4" src="/assets/svgs/guitar-logo.svg" alt="" width="72" height="72">
     <h1 class="h3 mb-3 font-weight-normal" [style.color]="'#cd5c5c'">Please sign in</h1>
     <label for="inputEmail" class="sr-only">Email address</label>
     <input type="email" id="inputEmail" name="email" class="form-control" formControlName="email"
@@ -14,13 +13,19 @@
         <input type="checkbox" value="remember-me"> Lembra-se
       </label>
     </div>
-    <button [disabled]="!loginForm.valid" class="btn btn-lg btn-danger-login btn-entrar btn-block" type="submit">
-      Entrar
+    <button [disabled]="loginForm.invalid" class="btn btn-lg btn-primary btn-entrar btn-block" type="submit">
+      Login
       <i class="fa fa-sign-in"></i>
     </button>
+    <button type="button" (click)="onLoginWithGoogle()" class="mt-2 btn btn-lg btn-danger-login btn-entrar btn-block">
+      Login with Google
+      <i class="fa fa-google-plus" aria-hidden="true"></i>
+    </button>
     <div class="nao-tem-login">
-      <p class="mt-2 mb-3 text-muted border-bottom-dashed" [routerLink]="['/auth/signup']">
-        Não tem login? Cadastre-se agora!
+      <p class="mt-2 mb-3 text-muted">
+        Don't have an account?
+        <br>
+        <a [routerLink]="['/auth/signup']">Register now!</a>
       </p>
     </div>
     <!-- <button class="btn btn-lg btn-primary btn-block" type="submit">Quero me Registrar</button> -->
